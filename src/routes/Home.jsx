@@ -2,7 +2,7 @@ import questions from '../questions';
 import { useState, useEffect } from 'react';
 import Finish from '../components/Finish';
 
-function Home() {
+function Home(){
 
 const [currentQuestion, setCurrentQuestion] = useState(0);
 const [score, setScore] = useState(0);
