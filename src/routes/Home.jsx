@@ -1,6 +1,8 @@
 import questions from '../questions';
 import { useState, useEffect } from 'react';
 import Finish from '../components/Finish';
+import correctSound from '../assets/correct-ding.mp3';
+import incorrectSound from '../assets/incorrect-sound.mp3';
 
 function Home(){
 
@@ -9,6 +11,7 @@ const [score, setScore] = useState(0);
 const [isFinished, setIsFinished] = useState(false);
 const [timeRemaining, setTimeRemaining] = useState(20);
 const [timeFinished, setTimeFinished] = useState(false);
+const [selectedOption, setSelectedOption] = useState(false);
 
 useEffect(()=>{
   const interval = setInterval(()=>{
@@ -19,21 +22,41 @@ useEffect(()=>{
   return ()=> clearInterval(interval);
 },[timeRemaining])
 
-function handleAnswerSubmit(e, isCorrect){
-  //agrega puntuacion
-if(isCorrect) setScore(score + 1);
-  //agrega clases a los botones
-e.target.classList.add(isCorrect ? 'correct' : 'incorrect');
-  //siguiente pregunta o fin del juego
-setTimeout(() => {
-  if(currentQuestion === questions.length -1) {
-    setIsFinished(true);
-  }
-  else{
-    setCurrentQuestion(currentQuestion + 1);
-    setTimeRemaining(20)
-  }
-}, 2000);
+function timeFinishedOrSelected (){
+    return timeFinished || selectedOption;
+}
+
+function handleAnswerSubmit(e, isCorrect, options){
+    const optionCorrect = options.filter(e=>e.isCorrect);
+    const button = document.getElementById(optionCorrect[0].textResponse)
+    if(timeFinished) button.disabled = false;
+
+if(isCorrect){
+    let soundCorrect = new Audio(correctSound);
+    soundCorrect.play();
+    setScore(score + 1);
+    e.target.classList.add(isCorrect ? 'correct' : 'incorrect');
+    
+    setTimeFinished(true);
+    setSelectedOption(true);
+}
+else{
+    let soundIncorrect = new Audio(incorrectSound);
+    soundIncorrect.play();
+    e.target.classList.add(isCorrect ? 'correct' : 'incorrect');
+    setTimeFinished(true);
+    setSelectedOption(true);
+    
+    button.className += 'correct';
+    console.log(button.disabled)
+
+    
+}
+
+
+//si es incorrecta buscar en las options la correcta
+//asignar la clase correct al button de la clase correcta
+
 }
 
 function handleTimeFinished(){
@@ -41,9 +64,12 @@ function handleTimeFinished(){
   setTimeFinished(false);
   if(currentQuestion === questions.length -1) {
     setIsFinished(true);
+    setSelectedOption(false);
   }
   else{
+    setTimeRemaining(20);
     setCurrentQuestion(currentQuestion + 1);
+    setSelectedOption(false)
   }
 }
 
@@ -60,27 +86,29 @@ if(isFinished){
           <span>Pregunta {currentQuestion + 1} de</span> {questions.length}
         </div>
         <div className='title-question'>{questions[currentQuestion].title}</div>
-        <div>
-          {!timeFinished ? (
+        <div className='buttons-dinamic'>
+          {!timeFinished && (
             <span className='time-remaining'>Tiempo restante: {timeRemaining}</span>
-          ) :
-          <button
-          onClick={()=>handleTimeFinished()}>
-          Continuar
-          </button>
+          )}
+          {
+            timeFinishedOrSelected() &&
+            (<button
+                onClick={()=>handleTimeFinished()}>
+                Continuar
+                </button>)
           }
-          
         </div>
       </section>
 
       <section className='right-section'>
-        {questions[currentQuestion].options.map((option,index)=>{
+        {questions[currentQuestion].options.map((option)=>{
           return (
             <button 
+            id={option.textResponse}
             key={option.textResponse}
-            disabled={timeFinished}
-            onClick={(e)=>handleAnswerSubmit(e, option.isCorrect)}
-            >{option.textResponse} 
+            disabled={timeFinished || selectedOption}
+            onClick={(e)=>handleAnswerSubmit(e, option.isCorrect,questions[currentQuestion].options)}
+            >{option.textResponse}
             </button>
           )
         })}

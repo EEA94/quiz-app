@@ -8,7 +8,7 @@ export default function Finish({score}) {
             <span>
                 {`Obtuviste ${score} puntos de ${questions.length}`}
             </span>
-            <button onClick={()=>{(window.location.href='/')}}>Volver a jugar</button>
+            <button onClick={()=>{(window.location.href='/home')}}>Volver a jugar</button>
         </div>
     </section>
   )
