@@ -70,7 +70,7 @@ function handleNextQuestion(){
   document.getElementsByClassName('correct')[0]?.classList.remove('correct')
   document.getElementsByClassName('incorrect')[0]?.classList.remove('incorrect')
 
-  setTimeRemaining(20);
+  setTimeRemaining(30);
   setTimeFinished(false);
 
   if(currentQuestion === questions.length -1) {
@@ -78,7 +78,7 @@ function handleNextQuestion(){
     setSelectedOption(false);
   }
   else{
-    setTimeRemaining(20);
+    setTimeRemaining(30);
     setCurrentQuestion(currentQuestion + 1);
     setSelectedOption(false)
   }

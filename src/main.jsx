@@ -8,7 +8,7 @@ import './global.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   
-  <BrowserRouter>
+  <BrowserRouter basename='/quiz-app'>
   <React.StrictMode>
   <Provider store={store}>
     <App />

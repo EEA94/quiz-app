@@ -19,8 +19,8 @@ export default function SearchQuestions(){
 		typeVarious[indexRandom] = temporal;
 	}
 
-    let questionsGroup1 = [typeWho.slice(0,5), typeVarious.slice(0,5)];
-    let questionsGroup2 = [typeWho.slice(-5), typeVarious.slice(-5)];
+    let questionsGroup1 = [typeWho.slice(0,6), typeVarious.slice(0,6)];
+    let questionsGroup2 = [typeWho.slice(-6), typeVarious.slice(-6)];
 
     return [questionsGroup1.flat(),questionsGroup2.flat()];
 }
