@@ -4,7 +4,7 @@
   
   body {
     margin: 0;
-    color: #fff;
+    color: black;
     background-color: #fcfcfc;
     display: flex;
     justify-content: center;
@@ -12,58 +12,8 @@
     min-height: 100vh;
   }
   
-  .app {
-    background-color: #252d4a;
-    max-width: 650px;
-    min-width: 450px;
-    height: min-content;
-    min-height: 200px;
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75);
-    display: flex;
-    justify-content: space-evenly;
-  }
   
-  /* PREGUNTAS */
-  .left-section {
-    width: 100%;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-  }
-  
-  .number-question {
-    margin-bottom: 20px;
-  }
-  
-  .number-question span {
-    font-size: 28px;
-  }
-  
-  .title-question {
-    margin-bottom: 12px;
-  }
-  
-  .right-section {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  /* FINALIZADO */
-  .juego-terminado {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    font-size: 24px;
-    align-items: center;
-  }
-  
-  /* GRAL */
-  button {
+  /* button {
     width: 100%;
     font-size: 16px;
     color: #ffffff;
@@ -76,42 +26,15 @@
     border: 5px solid #234668;
     cursor: pointer;
   }
-  
-  .tiempo-restante {
-    font-size: 14px;
-    color: #fcbf3d;
-    margin-bottom: 20px;
-  }
-  
-  .correct,
-  .correct:hover {
+   */
+   .correct,
+  .correct:hover,
+  .correct:disabled {
     background-color: #2f922f;
   }
   
   .incorrect,
-  .incorrect:hover {
+  .incorrect:hover,
+  .incorrect:disabled {
     background-color: #ff3333;
-  }
-  
-  .btns-container {
-    display: flex;
-    justify-content: space-evenly;
-  }
-  
-  button:hover {
-    background-color: #234668;
-  }
-  
-  button[disabled] {
-    background-color: #555e7d;
-    color: #ffffff;
-    cursor: not-allowed;
-  }
-  
-  button:focus {
-    outline: none;
-  }
-  
-  button svg {
-    margin-right: 5px;
   }
