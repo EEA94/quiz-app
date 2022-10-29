@@ -1,14 +1,16 @@
 import React from 'react';
-import questions from '../questions';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export default function Finish({score}) {
+  const datas = useSelector(state=>state.datas)
   return (
     <section className='app'>
-        <div className='end-game'>
+        <div className='endGame'>
             <span>
-                {`Obtuviste ${score} puntos de ${questions.length}`}
+                {`Obtuviste ${score} puntos de ${datas.questions.length}`}
             </span>
-            <button onClick={()=>{(window.location.href='/')}}>Volver a jugar</button>
+            <Link to={'/results'}><button>Siguiente</button></Link>
         </div>
     </section>
   )
