@@ -37,7 +37,7 @@ export const data = createSlice({
         setIsFinished: (state, action)=>{
             state.isFinished = action.payload
         },
-        setScoreGroup: (state, action)=>{
+        setScoreGroup: (state)=>{
             state.currentGroup == 1 ?
             state.resultGroup1.score += 1 :
             state.resultGroup2.score += 1

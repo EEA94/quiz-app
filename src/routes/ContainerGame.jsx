@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { Link } from 'react-router-dom';
 import { setCurrentGroup } from "../features/data/data";
 import Game from "./Game"
-import styles from '../styles/ContainerGame.module.css';
+import '../styles/ContainerGame.css';
 
 function ContainerGame() {
     const datas = useSelector(state=>state.datas) 
@@ -15,9 +15,9 @@ function ContainerGame() {
    },[])
 
   return (
-    <div>
+    <div className="results-groups">
         <h2>Resultados</h2>
-        <div>
+        <div className="container-results">
             <section>
                 <h4>Equipo {datas.dataInputs.groupOne}</h4>
                 <span>Puntaje: {datas.resultGroup1.score}</span>
@@ -26,9 +26,9 @@ function ContainerGame() {
                 <h4>Equipo {datas.dataInputs.groupTwo}</h4>
                 <span>Puntaje: {datas.resultGroup2.score}</span>
             </section>
-            <Link to={'/game'}><button>Siguiente turno</button></Link>
-            <button>Volver a jugar</button>
         </div>
+        <Link to={'/game'}><button className="btn">Siguiente turno</button></Link>
+        <Link to={'/'}><button className="btn">Volver a jugar</button></Link>
     </div>
   )
 }

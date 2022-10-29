@@ -1,0 +1,19 @@
+.finish {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg-variant);
+  min-width: 100%;
+  margin-top: 2rem;
+  border-radius: 1rem;   
+  }
+.btn{
+  margin: 2rem 0;
+}
+.endGame {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-size: 180%;
+    align-items: center;
+    margin-top: 2rem;
+  }

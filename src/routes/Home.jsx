@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'; 
 import { setInputs } from '../features/data/data';
-import styles from '../styles/Home.module.css';
+import '../styles/Home.css';
 
 function Home() {
 const input = useSelector(state=>state.datas.dataInputs);
@@ -34,23 +34,23 @@ const dispatch = useDispatch();
     // }
     // console.log(input)
   return (
-    <main>
-        <h1>Bienvenidos!</h1>
+    <main className='container'>
+        <h1 className='title-principal'>Bienvenidos!</h1>
         <form>
             <div>
                 {/* {console.log(input)} */}
-            <label>Cantidad de Preguntas por Grupo: </label>
-            <input type='number' name='quantity' value={input.quantity} onChange={(e)=>handleChange(e)}></input>
+            <label className='label-data'>Cantidad de Preguntas por Grupo: </label>
+            <input className='input-number' type='number' name='quantity' value={input.quantity} onChange={(e)=>handleChange(e)}></input>
             </div>
             <div>
-            <label>Nombre del grupo1: </label>
-            <input type='text' name='groupOne' value={input.groupOne} onChange={(e)=>handleChange(e)}></input>
+            <label className='label-data'>Nombre del grupo1: </label>
+            <input className='input-text' type='text' name='groupOne' value={input.groupOne} onChange={(e)=>handleChange(e)}></input>
             </div>
             <div>
-            <label>Nombre del grupo2: </label>
-            <input type='text' name='groupTwo' value={input.groupTwo} onChange={(e)=>handleChange(e)}></input>
+            <label className='label-data'>Nombre del grupo2: </label>
+            <input className='input-text' type='text' name='groupTwo' value={input.groupTwo} onChange={(e)=>handleChange(e)}></input>
             </div>
-            <Link to={"/game"}><button>Comenzar</button></Link>
+            <Link to={"/game"}><button className='btn'>Comenzar</button></Link>
         </form>
     </main>
   )

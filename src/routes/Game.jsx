@@ -3,7 +3,7 @@ import Finish from '../components/Finish';
 import { setIsFinished, setQuestions, setScoreGroup } from '../features/data/data';
 import correctSound from '../assets/correct-ding.mp3';
 import incorrectSound from '../assets/incorrect-sound.mp3';
-import styles from '../styles/Game.module.css';
+import '../styles/Game.css';
 import { useSelector, useDispatch } from 'react-redux';
 
 // const questionsall = SearchQuestions();
@@ -13,7 +13,7 @@ function Game(){
 const [currentQuestion, setCurrentQuestion] = useState(0);
 const [score, setScore] = useState(0);
 //const [isFinished, setIsFinished] = useState(false);
-const [timeRemaining, setTimeRemaining] = useState(20);
+const [timeRemaining, setTimeRemaining] = useState(30);
 const [timeFinished, setTimeFinished] = useState(false);
 const [selectedOption, setSelectedOption] = useState(false);
 
@@ -30,8 +30,6 @@ useEffect(()=>{
 },[])
 
 useEffect(()=>{
-  // dispatch(setQuestions())
-  // dispatch(setIsFinished(false))
   const interval = setInterval(()=>{
     if(timeRemaining > 0) setTimeRemaining((prev)=>prev -1)
     if(timeRemaining === 0) setTimeFinished(true);
@@ -93,31 +91,17 @@ if(isFinished){
 }
 
   return (
-    <div className={styles.app}>
+    <div className='app'>
       {/* {console.log(isFinished)} */}
-      <section className={styles.leftSection}>
-        <div className={styles.numberQuestion}>
-          <span>Pregunta {currentQuestion + 1} de</span> {questions.length}
+      <section className='leftSection'>
+        <div className='numberQuestion'>
+          <span>Pregunta {currentQuestion + 1} de {questions.length}</span> 
         </div>
-        <div className={styles.titleQuestion}>{questions[currentQuestion].title}</div>
-        <div>
-          {!timeFinished && (
-            <span className={styles.timeRemaining}>Tiempo restante: {timeRemaining}</span>
-          )}
-          {
-            timeFinishedOrSelected() &&
-            (<div>
-              <span>{questions[currentQuestion].biblicalReference}</span>
-            <button
-                onClick={()=>handleNextQuestion()}>
-                Continuar
-                </button>
-            </div>
-          )}
-        </div>
+        <div className='titleQuestion'>{questions[currentQuestion].title}</div>
       </section>
 
-      <section className={styles.rightSection}>
+      <section className='rightSection'>
+        <div className='container-options'>
         {questions[currentQuestion].options.map((option)=>{
           return (
             <button 
@@ -129,6 +113,22 @@ if(isFinished){
             </button>
           )
         })}
+        </div>
+        <div className='container-dinamic'>
+          {!timeFinished && (
+            <span className='timeRemaining'>Tiempo restante: {timeRemaining}</span>
+          )}
+          {
+            timeFinishedOrSelected() &&
+            (<div className='continue'>
+            <button className='btn'
+                onClick={()=>handleNextQuestion()}>
+                Continuar
+            </button>
+            <span className='reference'>Referencia: ({questions[currentQuestion].biblicalReference})</span>
+            </div>
+          )}
+        </div>
       </section>
     </div>
   )
